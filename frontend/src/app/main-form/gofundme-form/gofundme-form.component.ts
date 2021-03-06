@@ -46,7 +46,6 @@ export class GofundmeFormComponent implements OnInit {
   }
 
   urlSubmit(): void {
-    console.log(this.gofundmeForm.value);
     this.needsUrl = false;
     this.http.post<any>(this.backendUrl, {"url": this.gofundmeForm.value.url})
       .subscribe((data) => {
