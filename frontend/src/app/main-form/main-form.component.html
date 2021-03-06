@@ -1,4 +1,4 @@
-<div class="main-form-component">
+<div class="center">
     <form class="main-form" [formGroup]="mainForm" (ngSubmit)="onSubmit()">
         <div for="username-field">
             <input class="username-field" id="form-field" type="text" formControlName="id" placeholder="User Name" />
@@ -9,10 +9,10 @@
         <div for="lastname-field">
             <input class="lastname-field" id="form-field" type="text" formControlName="lastname" placeholder="Last Name" />
         </div>
-        <button class="add-gofundme-button" type="button" *ngIf="gofundme === null" (click)="addGoFundMe()">
+        <button class="primary-button" type="button" *ngIf="gofundme === null" (click)="addGoFundMe()">
             Add a GoFundMe
         </button>
-        <div class="gofundme-data" *ngIf="gofundme !== null">
+        <div class="data" *ngIf="gofundme !== null">
             <div class="gofundme-url">
                 {{ gofundme.url }}
             </div>
@@ -22,10 +22,13 @@
             <div class="gofundme-description">
                 {{ gofundme.description }}
             </div>
-            <button class="edit-gofundme-button" type="button" (click)="addGoFundMe()">
+            <button class="primary-button" type="button" (click)="addGoFundMe()">
                 Edit GoFundMe
             </button>
         </div>
+        <button type="submit" class="secondary-button">
+            Submit
+        </button>
         <div class="delivery-div">
             <div class="service-card" *ngFor="let service of services">
                 <div class="service-selected">
@@ -38,13 +41,10 @@
                     </div>
                 </div>
             </div>
-            <button class="delivery-button" (click)="goToDelivery()">
+            <button class="alternative-button" (click)="goToDelivery()">
                 Add Delivery Services
             </button>
         </div>
-        <button type="submit" class="main-form-button">
-            Submit
-        </button>
     </form>
 </div>
 
