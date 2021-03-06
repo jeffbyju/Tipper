@@ -22,6 +22,8 @@ export class GofundmeFormComponent implements OnInit {
   })
   selectGoFundMe$ = this.store.pipe(select(selectGoFundMe));
   needsUrl = true;
+  editSelected = false;
+  requestError = false;
   backendUrl = "http://localhost:5000/api/getGoFundMe"
 
   constructor(
@@ -51,13 +53,14 @@ export class GofundmeFormComponent implements OnInit {
       .subscribe((data) => {
         if (data.success) {
           this.needsUrl = false; // change to title / description
+          this.editSelected = false;
           this.gofundmeForm.setValue({
             ...this.gofundmeForm.value,
             title: data.title,
             description: data.description
           })
         } else {
-          
+          this.requestError = true;
         }
       })
   }
@@ -76,5 +79,9 @@ export class GofundmeFormComponent implements OnInit {
     )
 
     this.router.navigate(['/create']);
+  }
+
+  changeGoFundMeUrl(): void {
+    this.editSelected = true;
   }
 }

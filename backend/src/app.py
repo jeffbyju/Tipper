@@ -68,17 +68,26 @@ def create_user():
     else:
         raise ValueError("NOT POST")
 
+# No access to the database
+# 
 @app.route('/api/getGoFundMe', methods=["POST"])
 def get_gofundme():
     print(request.data)
+    json_data = json.loads(request.data)
+    url = json_data["url"]
+
+
     return jsonify(
         {
             "success": True,
             "url": "here",
-            "title": "Backend Title",
+            "title": "Backend fjasdkfldjsalfdsaj",
             "description": "Backend description"
+            # ...
         }
     )
+
+
 
 if __name__ == "__main__":
     app.run()

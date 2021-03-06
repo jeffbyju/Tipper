@@ -1,5 +1,5 @@
 <div>
-    <div class="before-data" *ngIf="needsUrl">
+    <div class="before-data" *ngIf="needsUrl || editSelected">
         <form class="url-form" [formGroup]="gofundmeForm" (ngSubmit)="urlSubmit()">
             <div for="url-field">
                 <input class="url-field" id="form-field" type="text" formControlName="url" placeholder="GoFundMe URL" />
@@ -9,10 +9,17 @@
             </button>
         </form>
     </div>
+    <div class="gofundme-error" *ngIf="requestError">
+        Error in getting data
+    </div>
     <div class="after-data" *ngIf="!needsUrl">
-        <div>
+        <div class="gofundme-url-data">
             {{ gofundmeForm.value.url }}
         </div>
+        <button class="edit-gofundme-url" type="button" (click)="changeGoFundMeUrl()">
+            Edit URL
+        </button>
+        
         <form class="gofundme-form" [formGroup]="gofundmeForm" (ngSubmit)="goFundMeSubmit()">
             <div for="title-field">
                 <input class="title-field" id="form-field" type="text" formControlName="title" placeholder="Title" />

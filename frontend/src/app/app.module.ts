@@ -11,12 +11,15 @@ import { MainFormRoutingModule } from './main-form/main-form-routing.component';
 import { appReducers } from './store/reducers/app.reducers';
 import { GofundmeFormRoutingModule } from './main-form/gofundme-form/gofundme-form-routing.component';
 import { StoreModule } from '@ngrx/store';
+import { DeliversFormComponent } from './main-form/delivers-form/delivers-form.component';
+import { DeliversFormRoutingModule } from './main-form/delivers-form/delivers-form-routing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainFormComponent,
-    GofundmeFormComponent
+    GofundmeFormComponent,
+    DeliversFormComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -26,6 +29,7 @@ import { StoreModule } from '@ngrx/store';
     AppRoutingModule,
     MainFormRoutingModule,
     GofundmeFormRoutingModule,
+    DeliversFormRoutingModule,
     StoreModule.forRoot(appReducers)
   ],
   providers: [],
