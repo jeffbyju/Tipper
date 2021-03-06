@@ -5,9 +5,10 @@ export interface IUser {
 }
 
 export interface IGoFundMe {
-    url: string
-    title: string;
-    description: string;
+    url?: string;
+    picture?: string;
+    title?: string;
+    description?: string;
 }
 
 export interface IFacebook {

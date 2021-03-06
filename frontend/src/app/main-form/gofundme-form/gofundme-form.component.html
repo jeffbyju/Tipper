@@ -1,0 +1,32 @@
+<div>
+    <div class="before-data" *ngIf="needsUrl">
+        <form class="url-form" [formGroup]="gofundmeForm" (ngSubmit)="urlSubmit()">
+            <div for="url-field">
+                <input class="url-field" id="form-field" type="text" formControlName="url" placeholder="GoFundMe URL" />
+            </div>
+            <button type="submit" class="url-form-button">
+                GoFundMe
+            </button>
+        </form>
+    </div>
+    <div class="after-data" *ngIf="!needsUrl">
+        <div>
+            {{ gofundmeForm.value.url }}
+        </div>
+        <form class="gofundme-form" [formGroup]="gofundmeForm" (ngSubmit)="goFundMeSubmit()">
+            <div for="title-field">
+                <input class="title-field" id="form-field" type="text" formControlName="title" placeholder="Title" />
+            </div>
+            <div for="gofundme-description">
+                <textarea class="description-field" id="form-field" type="text" formControlName="description">
+                    Description
+                </textarea>
+            </div>
+            <button type="submit" class="gofundme-form-button">
+                Data is Correct
+            </button>
+        </form>
+
+    </div>
+</div>
+<!-- <p>Hello</p> -->
