@@ -2,9 +2,6 @@ export interface IUser {
     id : string;
     firstname : string;
     lastname  : string;
-    gofundme : IGoFundMe | null;
-    facebook : IFacebook | null;
-    services : IService[];
 }
 
 export interface IGoFundMe {
