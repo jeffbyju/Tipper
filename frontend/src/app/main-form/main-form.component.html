@@ -1,0 +1,17 @@
+<div class="main-form-component">
+    <form class="main-form" [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+        <div for="username-field">
+            <input class="username-field" id="form-field" type="text" formControlName="id" placeholder="User Name" />
+        </div>
+        <div for="firstname-field">
+            <input class="firstname-field" id="form-field" type="text" formControlName="firstname" placeholder="First Name" />
+        </div>
+        <div for="lastname-field">
+            <input class="lastname-field" id="form-field" type="text" formControlName="lastname" placeholder="Last Name" />
+        </div>
+        <button type="submit" class="main-form-button">
+            Submit
+        </button>
+    </form>
+</div>
+
