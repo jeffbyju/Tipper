@@ -3,3 +3,65 @@
     width: 40px;
     height: 40px;
 }
+body{
+    background-color: #161616;
+}
+h1{
+    color: #f54634;
+    text-align: center;
+}
+div.main-form-component{
+    justify-content: center;
+}
+input[type=text] {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px #917164;
+    border-radius: 4px;
+  }
+.secondary-button {
+    background-color: #5cdb95; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 50px;
+  }
+.primary-button {
+    background-color: #c7493a;
+    border: none;
+    color: 	white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.alternative-button{
+    background-color: #917164;
+    border: none;
+    color: 	white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 70px;
+    margin-top: 8px;
+}
+.center {
+    margin: auto;
+    width: 55%;
+    
+    padding: 10px;
+    padding-left: 25%;
+}
+.data{
+    color: white;
+    width: 60%;
+}
