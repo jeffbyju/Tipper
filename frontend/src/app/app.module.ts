@@ -13,13 +13,15 @@ import { GofundmeFormRoutingModule } from './main-form/gofundme-form/gofundme-fo
 import { StoreModule } from '@ngrx/store';
 import { DeliversFormComponent } from './main-form/delivers-form/delivers-form.component';
 import { DeliversFormRoutingModule } from './main-form/delivers-form/delivers-form-routing.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainFormComponent,
     GofundmeFormComponent,
-    DeliversFormComponent
+    DeliversFormComponent,
+    ProfileComponent
   ],
   imports: [
     ReactiveFormsModule,

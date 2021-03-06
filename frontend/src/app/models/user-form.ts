@@ -19,6 +19,5 @@ export interface IFacebook {
 export interface IService {
     name: string;
     url: string;
-    id: string;
-    api: string;
+    image: string;
 }

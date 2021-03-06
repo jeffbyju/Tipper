@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { IGoFundMe } from '../models/user-form';
-import { selectGoFundMe } from '../store/selectors/data.selectors';
+import { IGoFundMe, IService } from '../models/user-form';
+import { selectGoFundMe, selectServices } from '../store/selectors/data.selectors';
 import { IAppState } from '../store/state/app.state';
 
 
@@ -21,6 +21,9 @@ export class MainFormComponent implements OnInit {
 
   gofundme : IGoFundMe | null = null;
   selectGoFundMe$ = this.store.pipe(select(selectGoFundMe));
+
+  services : IService[] = [];
+  selectServices$ = this.store.pipe(select(selectServices));
 
   constructor(
     private formBuilder : FormBuilder,
@@ -42,6 +45,13 @@ export class MainFormComponent implements OnInit {
       }
 
       this.gofundme = newGoFundMe;
+    });
+
+    this.selectServices$.subscribe((data) => {
+      this.services = [
+        ...this.services,
+        ...data
+      ]
     })
 
   }
@@ -52,5 +62,9 @@ export class MainFormComponent implements OnInit {
 
   addGoFundMe(): void {
     this.router.navigate(['/gofundme']);
+  }
+
+  goToDelivery(): void {
+    this.router.navigate(['/delivery'])
   }
 }

@@ -1,0 +1,22 @@
+[
+    {
+        "name": "DoorDash",
+        "url": "https://www.doordash.com/en-US",
+        "image": "assets/images/doordash.png"
+    },
+    {
+        "name": "GrubHub",
+        "url": "https://www.grubhub.com/",
+        "image": "assets/images/grubhub.png"
+    },
+    {
+        "name": "instacart",
+        "url": "https://www.instacart.com/",
+        "image": "assets/images/instacart.png"
+    },
+    {
+        "name": "Uber Eats",
+        "url": "https://www.ubereats.com/",
+        "image": "assets/images/uber_eats.png"
+    }
+]

@@ -1,0 +1,36 @@
+<div class="services-select">
+    <div class="delivery-form">
+        <input 
+            class="delivery-search" 
+            type="text"
+            [ngModel]="inputValue"
+            (ngModelChange)="onFilter($event)"
+        />
+    </div>
+    <div class="service-card" *ngFor="let service of filterServices">
+        <button class="service-select" (click)="addService(service)">
+            <img class="service-image" src="{{ service.image }}" />
+            <div class="service-name">
+                {{ service.name }}
+            </div>
+            <div class="service-url">
+                {{ service.url }}
+            </div>
+        </button>
+    </div>
+
+    <div class="service-card" *ngFor="let service of selectedServices">
+        <div class="service-selected">
+            <img class="service-image" src="{{ service.image }}" />
+            <div class="service-name">
+                {{ service.name }}
+            </div>
+            <div class="service-url">
+                {{ service.url }}
+            </div>
+        </div>
+    </div>
+    <button class="return-main" (click)="returnMain()">
+        Return to Create
+    </button>
+</div>

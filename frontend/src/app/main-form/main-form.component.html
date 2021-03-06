@@ -26,6 +26,22 @@
                 Edit GoFundMe
             </button>
         </div>
+        <div class="delivery-div">
+            <div class="service-card" *ngFor="let service of services">
+                <div class="service-selected">
+                    <img class="service-image" src="{{ service.image }}" />
+                    <div class="service-name">
+                        {{ service.name }}
+                    </div>
+                    <div class="service-url">
+                        {{ service.url }}
+                    </div>
+                </div>
+            </div>
+            <button class="delivery-button" (click)="goToDelivery()">
+                Add Delivery Services
+            </button>
+        </div>
         <button type="submit" class="main-form-button">
             Submit
         </button>
