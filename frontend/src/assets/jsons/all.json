@@ -1,0 +1,20 @@
+{
+    "id":"Jake",
+    "firstname":"Jake",
+    "lastname":"Smith",
+    "password": "pw",
+    "gofundme": {
+        "url":"http://gofund.com",
+        "picture":"",
+        "title":"Backend title",
+        "description":"Backend description"
+    },
+    "facebook":null,
+    "services": [
+        {
+            "name":"instacart",
+            "url":"https://www.instacart.com/",
+            "image":"assets/images/instacart.png"
+        }
+    ]
+}

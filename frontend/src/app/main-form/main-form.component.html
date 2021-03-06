@@ -1,13 +1,13 @@
 <div class="main-form-component">
     <form class="main-form" [formGroup]="mainForm" (ngSubmit)="onSubmit()">
         <div for="username-field">
-            <input class="username-field" id="form-field" type="text" formControlName="id" placeholder="User Name" />
+            {{ user.id }}
         </div>
         <div for="firstname-field">
-            <input class="firstname-field" id="form-field" type="text" formControlName="firstname" placeholder="First Name" />
+            {{ user.firstname }}
         </div>
         <div for="lastname-field">
-            <input class="lastname-field" id="form-field" type="text" formControlName="lastname" placeholder="Last Name" />
+            {{ user.lastname }}
         </div>
         <button class="add-gofundme-button" type="button" *ngIf="gofundme === null" (click)="addGoFundMe()">
             Add a GoFundMe

@@ -1,0 +1,16 @@
+<div class="login-div">
+    <div class="login-tab">
+        <button class="signup-button" (click)="loginOption('signup')">
+            SignUp
+        </button>
+        <button class="signin-button" (click)="loginOption('signin')">
+            SignIn
+        </button>
+    </div>
+    <div class="signup-container-div" *ngIf="signup">
+        <app-signup></app-signup>
+    </div>
+    <div class="signin-container-div" *ngIf="!signup">
+        <app-signin></app-signin>
+    </div>
+</div>

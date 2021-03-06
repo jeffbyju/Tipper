@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { IGoFundMe } from 'src/app/models/user-form';
 import { SetGoFundMe } from 'src/app/store/actions/data.actions';
-import { selectGoFundMe } from 'src/app/store/selectors/data.selectors';
+import { selectGoFundMe, selectUser } from 'src/app/store/selectors/data.selectors';
 import { IAppState } from 'src/app/store/state/app.state';
 
 @Component({
@@ -21,6 +21,8 @@ export class GofundmeFormComponent implements OnInit {
     description: ''
   })
   selectGoFundMe$ = this.store.pipe(select(selectGoFundMe));
+  selectUser$ = this.store.pipe(select(selectUser));
+
   needsUrl = true;
   editSelected = false;
   requestError = false;
@@ -78,7 +80,12 @@ export class GofundmeFormComponent implements OnInit {
       new SetGoFundMe(newGoFundMe)
     )
 
-    this.router.navigate(['/create']);
+    var id = '';
+    this.selectUser$.subscribe((data) => {
+      id = data.id;
+    })
+
+    this.router.navigate(['/profile', id]);
   }
 
   changeGoFundMeUrl(): void {

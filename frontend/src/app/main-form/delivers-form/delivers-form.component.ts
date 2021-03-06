@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { IService } from 'src/app/models/user-form';
 import { AddService } from 'src/app/store/actions/data.actions';
+import { selectUser } from 'src/app/store/selectors/data.selectors';
 import { IAppState } from 'src/app/store/state/app.state';
 
 @Component({
@@ -17,6 +18,8 @@ export class DeliversFormComponent implements OnInit {
   services : IService[] = [];
   filterServices : IService[] = [];
   selectedServices : IService[] = [];
+
+  selectedUsers$ = this.store.pipe(select(selectUser));
 
   inputValue = "";
 
@@ -55,6 +58,10 @@ export class DeliversFormComponent implements OnInit {
   }
 
   returnMain(): void {
-    this.router.navigate(['/create'])
+    var id = '';
+    this.selectedUsers$.subscribe((data) => {
+      id = data.id;
+    })
+    this.router.navigate(['/profile', id])
   }
 }

@@ -2,6 +2,7 @@ export interface IUser {
     id : string;
     firstname : string;
     lastname  : string;
+    password?: string;
 }
 
 export interface IGoFundMe {

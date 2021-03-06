@@ -19,34 +19,34 @@ MASTER_KEY = os.getenv("KEY")
 DATABASE_ID = os.getenv("DATABASE_ID")
 CONTAINER_ID = os.getenv("CONTAINER_ID")
 
-# def create_db():
-#     client = cosmos_client.CosmosClient(
-#         HOST,
-#         {'masterKey': MASTER_KEY},
-#         user_agent="CosmosDBDotnetQuickstart",
-#         user_agent_overwrite=True
-#     )
-#     try:
-#         db = client.create_database(id=DATABASE_ID)
-#     except exceptions.CosmosResourceExistsError:
-#         print("Database {} already exists".format(DATABASE_ID))
-#         db = client.get_database_client(DATABASE_ID)
+def create_db():
+    client = cosmos_client.CosmosClient(
+        HOST,
+        {'masterKey': MASTER_KEY},
+        user_agent="CosmosDBDotnetQuickstart",
+        user_agent_overwrite=True
+    )
+    try:
+        db = client.create_database(id=DATABASE_ID)
+    except exceptions.CosmosResourceExistsError:
+        print("Database {} already exists".format(DATABASE_ID))
+        db = client.get_database_client(DATABASE_ID)
     
-#     try:
-#         container = db.create_container(
-#             id=CONTAINER_ID,
-#             partition_key=PartitionKey(path='/account_number'),
-#             offer_throughput=400
-#         )
-#         print("Container with id \'{0}\' created".format(CONTAINER_ID))
-#     except exceptions.CosmosResourceExistsError:
-#         print('Container with id \'{0}\' was found'.format(CONTAINER_ID))
-#         container = db.get_container_client(CONTAINER_ID)
+    try:
+        container = db.create_container(
+            id=CONTAINER_ID,
+            partition_key=PartitionKey(path='/account_number'),
+            offer_throughput=400
+        )
+        print("Container with id \'{0}\' created".format(CONTAINER_ID))
+    except exceptions.CosmosResourceExistsError:
+        print('Container with id \'{0}\' was found'.format(CONTAINER_ID))
+        container = db.get_container_client(CONTAINER_ID)
 
-#     return db, container
+    return db, container
 
-# """Create Database"""
-# db, container = create_db()
+"""Create Database"""
+db, container = create_db()
 
 @app.route('/api/')
 def hello():
@@ -58,6 +58,11 @@ def hello():
         return jsonify(
             {"status": "failed"}
         )
+
+@app.route('/api/get-user', methods=["GET"])
+def get_user():
+    import pdb
+    pdb.set_trace()
 
 @app.route('/api/create-user', methods=['POST'])
 def create_user():

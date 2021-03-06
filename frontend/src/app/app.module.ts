@@ -14,6 +14,10 @@ import { StoreModule } from '@ngrx/store';
 import { DeliversFormComponent } from './main-form/delivers-form/delivers-form.component';
 import { DeliversFormRoutingModule } from './main-form/delivers-form/delivers-form-routing.component';
 import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
+import { SigninComponent } from './login/signin/signin.component';
+import { SignupComponent } from './login/signup/signup.component';
+import { LoginRoutingModule } from './login/login-routing.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { ProfileComponent } from './profile/profile.component';
     MainFormComponent,
     GofundmeFormComponent,
     DeliversFormComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -30,6 +37,7 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     AppRoutingModule,
     MainFormRoutingModule,
+    LoginRoutingModule,
     GofundmeFormRoutingModule,
     DeliversFormRoutingModule,
     StoreModule.forRoot(appReducers)
