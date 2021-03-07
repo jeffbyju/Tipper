@@ -11,6 +11,8 @@
         "picture": str[Base64],
         "title": str
         "description": str,
+        "goal": float,
+        "amountDonated":float
     },
     "facebook": {
         "url": str,
@@ -29,17 +31,15 @@
 ```
 
 ```
-/api/getGoFundMe 
+/api/getGoFundMe
 {
     "success": bool,
     "url": string,
     "title": string,
     "description": string,
+    "goal": float,
+    "amountDonated":float
 }
 ```
 
 ## Browser Extension
-
-
-
-
