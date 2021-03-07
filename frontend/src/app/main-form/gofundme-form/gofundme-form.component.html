@@ -1,8 +1,9 @@
 <div>
-    <div class="center" *ngIf="needsUrl || editSelected">
+    <div class="url-form-div" *ngIf="needsUrl || editSelected">
         <form class="url-form" [formGroup]="gofundmeForm" (ngSubmit)="urlSubmit()">
-            <div for="url-field">
-                <input class="url-field" id="form-field" type="text" formControlName="url" placeholder="GoFundMe URL" />
+            <div class="form-group url-form">
+                <label for="exampleInputEmail1">URL</label>
+                <input class="form-control url-field" id="form-field" type="text" formControlName="url" placeholder="GoFundMe URL" />
             </div>
             <button type="submit" class="primary-button">
                 GoFundMe
@@ -12,20 +13,23 @@
     <div class="gofundme-error" *ngIf="requestError">
         Error in getting data
     </div>
-    <div class="center" *ngIf="!needsUrl">
-        <div class="gofundme-url-data">
-            {{ gofundmeForm.value.url }}
+    <div class="url-form-div" *ngIf="!needsUrl">
+        <div class="url-entered">
+            <div class="gofundme-url-data">
+                {{ gofundmeForm.value.url }}
+            </div>
+            <button class="primary-button url-button" type="button" (click)="changeGoFundMeUrl()">
+                Edit URL
+            </button>
         </div>
-        <button class="primary-button" type="button" (click)="changeGoFundMeUrl()">
-            Edit URL
-        </button>
         
         <form class="gofundme-form" [formGroup]="gofundmeForm" (ngSubmit)="goFundMeSubmit()">
-            <div for="title-field">
-                <input class="title-field" id="form-field" type="text" formControlName="title" placeholder="Title" />
+            <div class="form-group" for="title-field">
+                <label for="exampleInputEmail1">Title</label>
+                <input class="form-control title-field" id="form-field" type="text" formControlName="title" placeholder="Title" />
             </div>
             <div for="gofundme-description">
-                <textarea class="description-field" id="form-field" type="text" formControlName="description">
+                <textarea class="form-control description-field" rows="10" id="form-field" type="text" formControlName="description">
                     Description
                 </textarea>
             </div>

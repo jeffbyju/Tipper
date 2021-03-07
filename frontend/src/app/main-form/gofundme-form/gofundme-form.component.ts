@@ -26,7 +26,7 @@ export class GofundmeFormComponent implements OnInit {
   needsUrl = true;
   editSelected = false;
   requestError = false;
-  backendUrl = "http://localhost:5000/api/getGoFundMe"
+  backendUrl = "http://localhost:4000/api/getGoFundMe"
 
   constructor(
     private formBuilder : FormBuilder,
@@ -53,7 +53,9 @@ export class GofundmeFormComponent implements OnInit {
     this.needsUrl = false;
     this.http.post<any>(this.backendUrl, {"url": this.gofundmeForm.value.url})
       .subscribe((data) => {
-        if (data.success) {
+        console.log(data)
+        if (data.status == "success") {
+          console.log(data)
           this.needsUrl = false; // change to title / description
           this.editSelected = false;
           this.gofundmeForm.setValue({

@@ -1,0 +1,21 @@
+.url-form-div {
+    margin-left: 20px;
+    color: white;
+}
+
+.url-entered {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+}
+.url-button {
+    margin-left: 10px;
+}
+
+.title-field {
+    color: black;
+}
+
+.gofundme-description {
+    color: black;
+}

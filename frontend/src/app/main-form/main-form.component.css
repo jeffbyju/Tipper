@@ -1,0 +1,48 @@
+.main-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile {
+    color: white;
+    font-family:Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 100px;
+    justify-content: space-around;
+}
+
+.profile-image-pic {
+    width: 75px;
+    height: 75px;
+    padding-left: 10px;
+}
+
+.profile-data {
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.adding {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.go-fund-me {
+    margin-bottom: 50px;
+}
+
+.service-card-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    justify-content: space-evenly;
+}
+
+.service-selected {
+    width: 250px;
+    height: 100px;
+}

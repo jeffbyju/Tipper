@@ -1,50 +1,59 @@
-<div class="center">
-    <form class="main-form" [formGroup]="mainForm" (ngSubmit)="onSubmit()">
-        <div for="username-field">
-            {{ user.id }}
+<div class="main-profile">
+    <div class="profile">
+        <div class="profile-image">
+            <img class="profile-image-pic" src="assets/images/default-profile-icon-16.jpg" />
         </div>
-        <div for="firstname-field">
-            {{ user.firstname }}
+        <div class="profile-data">
+            <div class="username-field">
+                {{ '@' + user.id }}
+            </div>
+            <div class="firstname-field">
+                {{ user.firstname + user.lastname }}
+            </div>
         </div>
-        <div for="lastname-field">
-            {{ user.lastname }}
-        </div>
-        <button class="primary-button" type="button" *ngIf="gofundme === null" (click)="addGoFundMe()">
-            Add a GoFundMe
-        </button>
-        <div class="data" *ngIf="gofundme !== null">
-            <div class="gofundme-url">
-                {{ gofundme.url }}
+    </div>
+    <div class="adding">
+        <div class="go-fund-me">
+            <div class="data" *ngIf="gofundme !== null">
+                <h2>GoFundMe Description</h2>
+                <div class="gofundme-url">
+                    {{ gofundme.url }}
+                </div>
+                <div class="gofundme-title">
+                    {{ gofundme.title }}
+                </div>
+                <div class="gofundme-description">
+                    {{ gofundme.description }}
+                </div>
+                <button class="primary-button" type="button" (click)="addGoFundMe()">
+                    Edit GoFundMe
+                </button>
             </div>
-            <div class="gofundme-title">
-                {{ gofundme.title }}
-            </div>
-            <div class="gofundme-description">
-                {{ gofundme.description }}
-            </div>
-            <button class="primary-button" type="button" (click)="addGoFundMe()">
-                Edit GoFundMe
+            <button class="primary-button" type="button" *ngIf="gofundme === null" (click)="addGoFundMe()">
+                Add a GoFundMe
             </button>
         </div>
-        <button type="submit" class="secondary-button">
-            Submit
-        </button>
         <div class="delivery-div">
-            <div class="service-card" *ngFor="let service of services">
-                <div class="service-selected">
-                    <img class="service-image" src="{{ service.image }}" />
-                    <div class="service-name">
-                        {{ service.name }}
-                    </div>
-                    <div class="service-url">
-                        {{ service.url }}
-                    </div>
+            <div class="service-card-div">
+                <div class="service-card" *ngFor="let service of services">
+                    <button class="service-selected">
+                        <img class="service-image" src="{{ service.image }}" />
+                        <div class="service-name">
+                            {{ service.name }}
+                        </div>
+                        <div class="service-url">
+                            {{ service.url }}
+                        </div>
+                    </button>
                 </div>
             </div>
             <button class="alternative-button" (click)="goToDelivery()">
                 Add Delivery Services
             </button>
+            <button type="submit" class="secondary-button" (click)="onSubmit()">
+                Submit
+            </button>
         </div>
-    </form>
+    </div>
 </div>
 

@@ -1,19 +1,48 @@
 <div class="signup-div">
     <form class="signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <div for="username-field">
-            <input class="username-field" id="username-field" type="text" formControlName="id" placeholder="User Name" />
+        <!-- <div for="username-field">
+            <input class="" id="username-field" type="text" formControlName="id" placeholder="User Name" />
         </div>
         <div for="firstname-field">
-            <input class="firstname-field" id="firstname-field" type="text" formControlName="firstname" placeholder="First Name" />
+            <input class="" id="firstname-field" type="text" formControlName="firstname" placeholder="First Name" />
         </div>
         <div for="lastname-field">
-            <input class="lastname-field" id="lastname-field" type="text" formControlName="lastname" placeholder="Last Name" />
+            <input class="" id="lastname-field" type="text" formControlName="lastname" placeholder="Last Name" />
         </div>
         <div for="password-field">
-            <input class="password-field" id="password-field" type="password" formControlName="password" placeholder="Password" />
+            <input class="" id="password-field" type="password" formControlName="password" placeholder="Password" />
         </div>
-        <button type="submit" class="signup-form-button">
+        <button type="submit" class="btn btn-primary mb-3">
             Submit
-        </button>
+        </button> -->
+        <div class="form-group">
+            <label class="control-label col-sm-2 labels" for="username">Username:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="username" formControlName="id" placeholder="Enter username">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 labels" for="first-name">First Name:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="first-name" formControlName="firstname" placeholder="Enter your first name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 labels" for="last-name">Last Name:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="last-name" formControlName="lastname" placeholder="Enter your last name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 labels" for="password-field">Password:</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control" id="password-field" placeholder="Enter password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6">
+              <button type="submit" class="btn btn-primary btn-block submit-button">Submit</button>
+            </div>
+        </div>
     </form>
 </div>
