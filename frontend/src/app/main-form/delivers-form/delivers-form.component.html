@@ -18,19 +18,24 @@
             </div>
         </button>
     </div>
-
-    <div class="service-card" *ngFor="let service of selectedServices">
-        <div class="service-selected">
-            <img class="service-image" src="{{ service.image }}" />
-            <div class="service-name">
-                {{ service.name }}
-            </div>
-            <div class="service-url">
-                {{ service.url }}
-            </div>
-        </div>
-    </div>
     <button class="primary-button" (click)="returnMain()">
         Return to Create
     </button>
+
+    <div class="added-services">
+        <h3>
+            Added Services
+        </h3>
+        <div class="service-card" *ngFor="let service of selectedServices">
+            <button class="service-selected">
+                <img class="service-image" src="{{ service.image }}" />
+                <div class="service-name">
+                    {{ service.name }}
+                </div>
+                <div class="service-url">
+                    {{ service.url }}
+                </div>
+            </button>
+        </div>
+    </div>
 </div>
