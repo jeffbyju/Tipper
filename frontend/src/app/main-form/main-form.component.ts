@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { IGoFundMe, IService, IUser } from '../models/user-form';
 import { AddService, SetFacebook, SetGoFundMe, SetUser } from '../store/actions/data.actions';
@@ -38,52 +38,59 @@ export class MainFormComponent implements OnInit {
   selectAllData$ = this.store.pipe(select(getData));
 
   
-  allURL = "assets/jsons/all.json"
-  successURL = "assets/jsons/success.json"
+  allURL = "http://localhost:5000/api/get-user"
+  successURL = "http://localhost:5000/api/check-user"
+  postURL = "http://localhost:5000/api/create-user"
 
   constructor(
+    private route : ActivatedRoute,
     private formBuilder : FormBuilder,
     private store : Store<IAppState>,
     private router : Router,
     private http : HttpClient
   ) { }
 
-  loadData() {
-    this.http.get<IDataState>(this.allURL)
-    .subscribe((data) => {
-      this.store.dispatch(new SetUser({
-        id: data.id,
-        firstname: data.firstname,
-        lastname: data.lastname
-      }))
+  loadData(id : string | null) {
+    if (id !== null) {
+      this.http.get<IDataState>(this.allURL + "/" + id)
+      .subscribe((data) => {
+        this.store.dispatch(new SetUser({
+          id: data.id,
+          firstname: data.firstname,
+          lastname: data.lastname
+        }))
 
-      if (data.gofundme !== null) {
-        this.store.dispatch(new SetGoFundMe(
-          data.gofundme
-        ))
-      }
+        if (data.gofundme !== null) {
+          this.store.dispatch(new SetGoFundMe(
+            data.gofundme
+          ))
+        }
 
-      if (data.facebook !== null) {
-        this.store.dispatch(new SetFacebook(
-          data.facebook
-        ))
-      }
+        if (data.facebook !== null) {
+          this.store.dispatch(new SetFacebook(
+            data.facebook
+          ))
+        }
 
-      data.services.map((service) => {
-        this.store.dispatch(new AddService(service))
+        data.services.map((service) => {
+          this.store.dispatch(new AddService(service))
+        })
+
       })
-
-    })
+    }
   }
 
   ngOnInit(): void {
-    this.http.get<any>(this.successURL)
-      .subscribe((data) => {
-        if (data.success) {
-          this.loadData();
-        }
-      })
-
+    var id : string | null = this.route.snapshot.paramMap.get('id')
+    if (id !== null) {
+      console.log(id);
+      this.http.get<any>(this.successURL + "/" + id)
+        .subscribe((data) => {
+          if (data.success) {
+            this.loadData(id);
+          }
+        })
+    }
     
 
     this.selectUser$.subscribe((data) => {
@@ -119,8 +126,17 @@ export class MainFormComponent implements OnInit {
   }
 
   onSubmit(): void {
+    var dataState : IDataState; 
+
     this.selectAllData$.subscribe((data) => {
+      dataState = data;
       console.log(data);
+      this.http.post<IDataState>(
+        this.postURL,
+        dataState
+      ).subscribe((resp) => {
+        console.log(resp)
+      })
       console.log(JSON.stringify(data));
     })
   }

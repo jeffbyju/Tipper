@@ -35,7 +35,7 @@ def create_db():
     try:
         container = db.create_container(
             id=CONTAINER_ID,
-            partition_key=PartitionKey(path='/account_number'),
+            partition_key=PartitionKey(path='/user_id'),
             offer_throughput=400
         )
         print("Container with id \'{0}\' created".format(CONTAINER_ID))
@@ -59,17 +59,57 @@ def hello():
             {"status": "failed"}
         )
 
-@app.route('/api/get-user', methods=["GET"])
-def get_user():
-    import pdb
-    pdb.set_trace()
+# container.query_items(
+#     query,
+#     parameters=None,
+#     partition_key=None,
+#     enable_cross_partition_query=None,
+#     max_item_count=None,
+#     enable_scan_in_query=None,
+#     populate_query_metrics=None,
+#     **kwargs,
+# )
+@app.route('/api/check-user/<str_id>', methods=["GET"])
+def check_user(str_id):
+    users = list(container.query_items(
+        query="SELECT * FROM r WHERE r.id=@id",
+        parameters=[
+            { "name":"@id", "value": str_id }
+        ],
+        enable_cross_partition_query=True
+    ))
+
+    if len(users) > 0:
+        return jsonify({
+            "success": True
+        })
+    else:
+        return jsonify({
+            "succes": False
+        })
+
+@app.route('/api/get-user/<str_id>', methods=["GET"])
+def get_user(str_id):
+    users = list(container.query_items(
+        query="SELECT * FROM r WHERE r.id=@id",
+        parameters=[
+            { "name":"@id", "value": str_id }
+        ],
+        enable_cross_partition_query=True
+    ))
+
+    return jsonify(users[0])
 
 @app.route('/api/create-user', methods=['POST'])
-def create_user():
+def create_user(str_id):
     if request.method == 'POST':
         print(request.data)
         user_json = json.loads(request.data)
-        container.create_item(body=user_json)
+        print(user_json)
+        # container.create_item(body=user_json)
+        return jsonify(
+            {"sucess": True}
+        )
     else:
         raise ValueError("NOT POST")
 
