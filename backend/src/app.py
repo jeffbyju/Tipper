@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 import json
 from dotenv import load_dotenv
@@ -69,10 +69,6 @@ def hello():
 #     populate_query_metrics=None,
 #     **kwargs,
 # )
-def get_user(std_id):
-    
-
-    return users
 
 @app.route('/api/check-user/<str_id>', methods=["GET"])
 def check_user(str_id):
@@ -133,6 +129,55 @@ def create_user():
         return (jsonify(
             {"sucess": True}
         ), 200)
+
+@app.route("/api/create-account/", methods=["POST"])
+def create_account():
+    user_json = None
+    if request.method == 'POST':
+        user_json = json.loads(request.data)
+    else:
+        raise ValueError("NOT POST")
+    
+    print(user_json)
+    str_id = user_json['id']
+    users = list(container.query_items(
+        query="SELECT * FROM r WHERE r.id=@id",
+        parameters=[
+            { "name":"@id", "value": str_id }
+        ],
+        enable_cross_partition_query=True
+    ))
+    if len(users) == 0:
+        container.create_item(body=user_json)
+        return Response(status=200)
+    # elif user_json['password'] == users[0]['password']:
+    #     return (jsonify({"success", False}), 200)
+    else:
+        return Response(status=500)
+
+@app.route("/api/check-login/", methods=["POST"])
+def check_login():
+    user_json = None
+    if request.method == 'POST':
+        user_json = json.loads(request.data)
+    else:
+        raise ValueError("NOT POST")
+    
+    print(user_json)
+    str_id = user_json['id']
+    users = list(container.query_items(
+        query="SELECT * FROM r WHERE r.id=@id",
+        parameters=[
+            { "name":"@id", "value": str_id }
+        ],
+        enable_cross_partition_query=True
+    ))
+    if len(users) != 1:
+        return (jsonify({"success", False}), 200)
+    # elif user_json['password'] == users[0]['password']:
+    #     return (jsonify({"success", True}), 200)
+    else:
+        return (jsonify({"success", True}), 200)
 
 # No access to the database
 # 

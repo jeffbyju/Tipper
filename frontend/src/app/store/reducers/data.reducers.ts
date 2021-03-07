@@ -38,6 +38,12 @@ export const dataReducers = (
                 ]
             }
         }
+        case EDataActions.IsSet: {
+            return {
+                ...state,
+                found: action.set
+            }
+        }
         default:
             return state;
     }

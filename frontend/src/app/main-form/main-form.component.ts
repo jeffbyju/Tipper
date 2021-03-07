@@ -4,8 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { IGoFundMe, IService, IUser } from '../models/user-form';
-import { AddService, SetFacebook, SetGoFundMe, SetUser } from '../store/actions/data.actions';
-import { getData, selectGoFundMe, selectServices, selectUser } from '../store/selectors/data.selectors';
+import { AddService, IsSet, SetFacebook, SetGoFundMe, SetUser } from '../store/actions/data.actions';
+import { getData, selectFound, selectGoFundMe, selectServices, selectUser } from '../store/selectors/data.selectors';
 import { IAppState } from '../store/state/app.state';
 import { IDataState } from '../store/state/data.state';
 
@@ -37,7 +37,8 @@ export class MainFormComponent implements OnInit {
 
   selectAllData$ = this.store.pipe(select(getData));
 
-  
+  selectFound$ = this.store.pipe(select(selectFound));
+
   allURL = "http://localhost:5000/api/get-user"
   successURL = "http://localhost:5000/api/check-user"
   postURL = "http://localhost:5000/api/create-user"
@@ -72,28 +73,33 @@ export class MainFormComponent implements OnInit {
           ))
         }
 
-        data.services.map((service) => {
-          this.store.dispatch(new AddService(service))
-        })
-
+        if (data.services) {
+          data.services.map((service) => {
+            this.store.dispatch(new AddService(service))
+          })
+        }
       })
     }
   }
 
   ngOnInit(): void {
     var id : string | null = this.route.snapshot.paramMap.get('id')
-    if (id !== null) {
-      console.log(id);
-      this.http.get<any>(this.successURL + "/" + id)
-        .subscribe((data) => {
-          if (data.success) {
-            this.loadData(id);
-          }
-        })
-    }
+    this.selectFound$.subscribe((found) => {
+      if (id !== null && !found) {
+        console.log(id);
+        this.http.get<any>(this.successURL + "/" + id)
+          .subscribe((data) => {
+            if (data.success) {
+              this.loadData(id);
+            }
+          })
+      }
+    })
     
+    this.store.dispatch(new IsSet(true));
 
     this.selectUser$.subscribe((data) => {
+      console.log(data);
       this.user = {
         id : data.id,
         firstname : data.firstname,

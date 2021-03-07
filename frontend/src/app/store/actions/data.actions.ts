@@ -8,6 +8,7 @@ export enum EDataActions {
     SetGoFundMe = '[DATA] Setting GoFundMe',
     SetFacebook = '[DATA] Setting Facebook',
     AddService = '[DATA] Adding Delivery Serivce',
+    IsSet = '[DATA] Setting as set'
 }
 
 export class SetUser implements Action {
@@ -30,8 +31,14 @@ export class AddService implements Action {
     constructor(public service : IService) { }
 }
 
+export class IsSet implements Action {
+    public readonly type = EDataActions.IsSet;
+    constructor(public set : boolean) { }
+}
+
 export type DActions = 
     | SetUser
     | SetGoFundMe
     | SetFacebook
-    | AddService;
+    | AddService
+    | IsSet;

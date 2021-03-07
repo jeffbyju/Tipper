@@ -35,3 +35,8 @@ export const selectServices = createSelector(
     selectApp,
     (state: IDataState) => state.services
 );
+
+export const selectFound = createSelector(
+    selectApp,
+    (state: IDataState) => state.found
+)
