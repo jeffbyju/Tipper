@@ -118,7 +118,6 @@ export class MainFormComponent implements OnInit {
 
     this.selectServices$.subscribe((data) => {
       this.services = [
-        ...this.services,
         ...data
       ]
     })
@@ -133,7 +132,8 @@ export class MainFormComponent implements OnInit {
       console.log(data);
       this.http.post<IDataState>(
         this.postURL,
-        dataState
+        dataState,
+        // {'Content-Type': 'application/json'}
       ).subscribe((resp) => {
         console.log(resp)
       })

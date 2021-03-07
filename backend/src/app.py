@@ -69,6 +69,11 @@ def hello():
 #     populate_query_metrics=None,
 #     **kwargs,
 # )
+def get_user(std_id):
+    
+
+    return users
+
 @app.route('/api/check-user/<str_id>', methods=["GET"])
 def check_user(str_id):
     users = list(container.query_items(
@@ -101,17 +106,33 @@ def get_user(str_id):
     return jsonify(users[0])
 
 @app.route('/api/create-user', methods=['POST'])
-def create_user(str_id):
+def create_user():
+
+    user_json = None
     if request.method == 'POST':
-        print(request.data)
         user_json = json.loads(request.data)
-        print(user_json)
-        # container.create_item(body=user_json)
-        return jsonify(
-            {"sucess": True}
-        )
     else:
         raise ValueError("NOT POST")
+
+    print(user_json)
+    str_id = user_json['id']
+    users = list(container.query_items(
+        query="SELECT * FROM r WHERE r.id=@id",
+        parameters=[
+            { "name":"@id", "value": str_id }
+        ],
+        enable_cross_partition_query=True
+    ))
+    if len(users) == 0:
+        container.create_item(body=user_json)
+        return (jsonify(
+            {"sucess": True}
+        ), 200)
+    else:
+        container.replace_item(item=users[0], body=user_json)
+        return (jsonify(
+            {"sucess": True}
+        ), 200)
 
 # No access to the database
 # 
